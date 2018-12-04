@@ -1,0 +1,19 @@
+{
+  "name": "splunkui_proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^2.0.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "request": "^2.88.0",
+    "splunk-logging": "^0.10.1",
+    "splunk-sdk": "^1.8.4"
+  }
+}
