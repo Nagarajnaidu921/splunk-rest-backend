@@ -4,11 +4,11 @@ const express = require('express');
 const config = require('config');
 const SplunkLogger = require("splunk-logging").Logger;
 const router = express.Router();
-const logconfig = {
-    token: "c6a9ad13-b7d4-47d0-a7f4-0d6ed40c93e4",
-    url: "https://localhost:8100"
-};
-var Logger = new SplunkLogger(logconfig);
+// const logconfig = {
+//     token: "c6a9ad13-b7d4-47d0-a7f4-0d6ed40c93e4",
+//     url: "https://localhost:8100"
+// };
+// var Logger = new SplunkLogger(logconfig);
 function splunkAuthServ( username, password ) {
     const uri = `${config.splunkd}${config.api.auth}`;
     console.log(uri)
@@ -46,17 +46,17 @@ router.route('/')
     const { username, password } = req.body;
     splunkAuthServ(username, password)
     .then(token => {
-        const payload = {
-            message: {
-                status: 200,
-                msg: 'successfully token generated'
-            }
-        }
-        console.log("Sending payload", payload);
-        Logger.send(payload, function(err, resp, body) {
-            // If successful, body will be { text: 'Success', code: 0 }
-            console.log("Response from Splunk", body);
-        });
+        // const payload = {
+        //     message: {
+        //         status: 200,
+        //         msg: 'successfully token generated'
+        //     }
+        // }
+        // console.log("Sending payload", payload);
+        // Logger.send(payload, function(err, resp, body) {
+        //     // If successful, body will be { text: 'Success', code: 0 }
+        //     console.log("Response from Splunk", body);
+        // });
         res.send(token);
 
     })

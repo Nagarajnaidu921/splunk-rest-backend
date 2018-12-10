@@ -38,4 +38,19 @@ router.route('/:user') // returns the list of apps for given user
         res.send(err)
     })
 })
+
+router.route('/delete/:appName')
+.delete((req, res) => {
+    const token =  (req.headers.authorization || req.headers.Authorization || '').split('Bearer ').pop();
+    const { appName } = req.params;
+    request.splunkDelete(`${config.splunkd}/services/apps/local/${appName}`, token)
+    .then(result => {
+        console.log(result);
+        res.send(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.send(err);
+    })
+})
 module.exports = router;
